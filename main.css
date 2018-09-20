@@ -5,3 +5,13 @@ span {
     border: 1px solid black;
     font-size: 100px;
 }
+
+.border {
+    border: 1px solid black;
+}
+
+.cell {
+    height: 50px;
+    width: 50px;
+    display: inline-block;
+}
