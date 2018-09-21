@@ -1,30 +1,46 @@
 class Grid {
     constructor(options) {
-        this.row1 = document.write('<span class="row">X</span>');
-        this.row2 = document.write('<span class="row">X</span>');
-        this.row3 = document.write('<span class="row">X</span>');
+        this.gridArray = []
+        this.numberOfRows = options.numberOfRows || 5
+        this.numberOfColumns = options.numberOfColumns || 5
+        this.gridContainer = document.getElementById("main")
+        this.elementId = options.elementId
+        this.newRows()
 
     }
 
+
+    newRows() {
+        for (let rowIndex = 0; rowIndex < this.numberOfRows; rowIndex++) {
+            this.rowIndex = rowIndex
+            this.rowArray = []
+            this.gridArray.push(this.rowArray)
+            this.rowElement = document.createElement("div")
+            this.rowElement.classList.add("newDiv")
+            this.gridContainer.appendChild(this.rowElement)
+            for (let columnIndex = 0; columnIndex < this.numberOfColumns; columnIndex++) {
+                const cell = new Cell(rowIndex, columnIndex, this.rowElement)
+                this.rowArray.push(cell)
+            }
+        }
+    }
 }
 
 class Cell {
-    constructor(rowIndex, colIndex, cellClasses) {
-        this.break = document.write('<br>')
-        this.column1 = document.write('<span class="row">X</span>');
-        this.column2 = document.write('<span class="row">X</span>');
-        this.column3 = document.write('<span class="row">X</span>');
-        this.rowIndex = rowIndex;
-        this.colIndex = colIndex;
-        this.cellClasses = cellClasses;
+    constructor(rowIndex, columnIndex, rowParent) {
+        this.rowIndex = rowIndex
+        this.columnIndex = columnIndex
+        this.rowParent = rowParent
+        this.createCell()
+    }
+    createCell() {
+        this.cell = document.createElement("span")
+        this.rowParent.appendChild(this.cell)
     }
 }
 
-
-const newGrid = new Grid({
-    rows: 3,
-    columns: 3,
-});
-
-let cellOne = new Cell
-let cellTwo = new Cell
+const grid = new Grid({
+    numberOfRows: 5,
+    numberOfColumns: 5,
+    parentContainerId: "main",
+})
